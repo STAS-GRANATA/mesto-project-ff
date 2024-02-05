@@ -13,14 +13,14 @@ function createCard(card, deleteFunc) {
   cardImage.src = card.link;
   cardImage.alt = card.name;
   cardTitle.textContent = card.name;
-  deleteButton.addEventListener('click', deleteFunc);
+  deleteButton.addEventListener('click', () => deleteFunc(cardElement));
 
   return cardElement;
 }
+
 // @todo: Функция удаления карточки
-function deleteCard(evt){
-  const cardDelete = evt.target;
-  cardDelete.closest('.places__item').remove();
+function deleteCard(card) {
+  card.remove();
 }
 // @todo: Вывести карточки на страницу
 function renderCard(card, container) {
