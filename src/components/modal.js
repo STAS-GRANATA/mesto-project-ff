@@ -1,28 +1,29 @@
-// функция открытия модального окна
-export const openModal = popup => {
-  popup.classList.add('popup_is-opened');
-  popup.addEventListener('click', handleCloseModalByOverlayClick);
-  document.addEventListener('keydown', handleCloseModalByEscape);
-};
+//Функция открывает попап
+function openPopup(popup) {
+  popup.classList.add('popup_is-opened'); 
+  document.addEventListener('keydown', closeByEsc);
+}
 
-// функция закрытия модального окна
-export const closeModal = popup => {
-  popup.classList.remove('popup_is-opened');
-  popup.removeEventListener('click', handleCloseModalByOverlayClick);
-  document.removeEventListener('keydown', handleCloseModalByEscape);
-};
-
-// функция закрытия модального окна кликом 
-const handleCloseModalByOverlayClick = evt => {
-  if (evt.target === evt.currentTarget) {
-    closeModal(evt.target);
+// Функция закрывает попап по клику на оверлей
+function closePopupByOverlay(event) {
+  if (event.target.classList.contains('popup')) {
+    closePopup(event.target); 
   }
-};
+}
 
-// функция закрытия модального окна по клавише Esc
-const handleCloseModalByEscape = evt => {
-  if (evt.key === 'Escape') {
-    closeModal(document.querySelector('.popup_is-opened'));
+//Функция закрывает попап по нажатию клавиши Esc
+function closeByEsc(event) {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_is-opened');
+    closePopup(openedPopup);
   }
-};
+}
 
+//Функция закрывает попап
+function closePopup(popup) {
+  popup.classList.remove('popup_is-opened'); 
+  document.removeEventListener('click', closePopupByOverlay); 
+  document.removeEventListener('keydown', closeByEsc);
+}
+
+export {openPopup, closePopup, closePopupByOverlay};
