@@ -18,15 +18,15 @@ const profileImage = document.querySelector(".profile__image");
 
 // Попап редактирования профиля
 const popupTypeEdit = document.querySelector('.popup_type_edit');
-const editProfileFormElement = popupTypeEdit.querySelector('.popup__form');
-const nameInput = editProfileFormElement.querySelector('.popup__input_type_name');
-const jobInput = editProfileFormElement.querySelector('.popup__input_type_description');
+const formPopupProfile = popupTypeEdit.querySelector('.popup__form');
+const nameInput = formPopupProfile.querySelector('.popup__input_type_name');
+const jobInput = formPopupProfile.querySelector('.popup__input_type_description');
 
 // Попап добавления новой карточки
 const popupTypeNewCard = document.querySelector('.popup_type_new-card');
-const addFormElement = popupTypeNewCard.querySelector('.popup__form');
-const cardNameInput = addFormElement.querySelector('.popup__input_type_card-name');
-const cardUrlInput = addFormElement.querySelector('.popup__input_type_url');
+const formAddElement = popupTypeNewCard.querySelector('.popup__form');
+const cardNameInput = formAddElement.querySelector('.popup__input_type_card-name');
+const cardUrlInput = formAddElement.querySelector('.popup__input_type_url');
 
 // Попап изображения
 export const popupTypeImage = document.querySelector('.popup_type_image');
@@ -35,8 +35,8 @@ export const popupCaption = popupTypeImage.querySelector('.popup__caption');
 
 // Попап редактирования аватара
 const popupTypeAvatar = document.querySelector('.popup_type_avatar');
-const editAvatarFormElement = popupTypeAvatar.querySelector('.popup__form');
-const avatarUrlInput = editAvatarFormElement.querySelector('.popup__input_type_url');
+const avatarFormElementEdit = popupTypeAvatar.querySelector('.popup__form');
+const avatarUrlInput = avatarFormElementEdit.querySelector('.popup__input_type_url');
 
 let userId = '';
 
@@ -64,21 +64,21 @@ profileEditButton.addEventListener('click', function () {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   
-  clearValidation(editProfileFormElement, validationConfig);
+  clearValidation(formPopupProfile, validationConfig);
 });
 
 buttonOpenAddCardForm.addEventListener('click', function () {
   openPopup(popupTypeNewCard);
   
-  clearValidation(addFormElement, validationConfig);
-  addFormElement.reset();
+  clearValidation(formAddElement, validationConfig);
+  formAddElement.reset();
 });
 
 profileImage.addEventListener('click', function () {
   openPopup(popupTypeAvatar);
   
-  clearValidation(editAvatarFormElement, validationConfig);
-  editAvatarFormElement.reset();
+  clearValidation(avatarFormElementEdit, validationConfig);
+  avatarFormElementEdit.reset();
 })
 
 // Функция открывает попап изображения
@@ -192,9 +192,9 @@ popupTypeNewCardButton.addEventListener('click', () => closePopup(popupTypeNewCa
 popupTypeImageButton.addEventListener('click', () => closePopup(popupTypeImage));
 popupTypeAvatarButton.addEventListener('click', () => closePopup(popupTypeAvatar))
 
-editProfileFormElement.addEventListener('submit', handleEditProfileFormSubmit);
-addFormElement.addEventListener('submit', handleAddFormSubmit);
-editAvatarFormElement.addEventListener('submit', handleEditAvatarFormSubmit);
+formPopupProfile.addEventListener('submit', handleEditProfileFormSubmit);
+formAddElement.addEventListener('submit', handleAddFormSubmit);
+avatarFormElementEdit.addEventListener('submit', handleEditAvatarFormSubmit);
 
 const validationConfig = {
   formSelector: '.popup__form',
