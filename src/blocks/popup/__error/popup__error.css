@@ -1,0 +1,10 @@
+.popup__error {
+  opacity: 0;
+  display: block;
+  font-size: 12px;
+  color: #F00;
+  margin-block-start: 5px;
+}
+.popup__error_visible {
+  opacity: 1;
+}
